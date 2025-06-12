@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events - College Club</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #6c63ff;
+      --gold: #ffd700;
+      --navy-gray: #343a40;
+      --pale-blue: #e0e7ff;
+      --light-bg: #f8fafc;
+      --white: #fff;
+      --content-gray: #f8fafc;
+      --text-dark: #222;
+      --text-mid: #333;
+      --shadow-purple: 0 4px 24px 0 rgba(108,99,255,0.12);
+      --shadow-gold: 0 2px 8px 0 #ffd70033;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--pale-blue) 0%, var(--light-bg) 100%);
+      min-height: 100vh;
+      color: var(--text-mid);
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--navy-gray) !important;
+      box-shadow: 0 2px 12px 0 rgba(52,58,64,0.08);
+    }
+    .navbar-brand {
+      color: var(--purple) !important;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .navbar-nav .nav-link {
+      color: var(--white) !important;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link:hover {
+      color: var(--gold) !important;
+    }
+    .navbar-nav .nav-link.active::after {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--gold));
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+
+    /* Section Title */
+    h2 {
+      color: var(--purple);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(108,99,255,0.10), 0 1px 0 #fff;
+    }
+
+    /* Event Cards */
+    .event-card {
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid var(--pale-blue);
+      border-radius: 1.25rem;
+      box-shadow: var(--shadow-purple), var(--shadow-gold);
+      padding: 2rem 1.25rem 1.5rem 1.25rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .event-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 6px 32px 0 rgba(108,99,255,0.18), 0 4px 16px 0 #ffd70055;
+      z-index: 2;
+    }
+    .event-card .card-title {
+      color: var(--purple);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 4px rgba(108,99,255,0.08);
+    }
+    .event-card .event-date {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--gold) 60%, var(--purple) 100%);
+      color: var(--navy-gray);
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 0.25em 1em;
+      border-radius: 1em;
+      margin-top: 0.5rem;
+      box-shadow: 0 1px 4px 0 #ffd70033;
+      letter-spacing: 0.5px;
+    }
+    .event-card p {
+      color: var(--text-mid);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-gray);
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      box-shadow: 0 -2px 12px 0 rgba(52,58,64,0.08);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">College Club</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+        <li class="nav-item"><a href="members.html" class="nav-link">Members</a></li>
+        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Events -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Upcoming Events</h2>
+  <div class="row text-center justify-content-center">
+    <div class="col-12 col-md-4 mb-4">
+      <div class="event-card h-100 d-flex flex-column align-items-center">
+        <h5 class="card-title">Tech Fest 2025</h5>
+        <p>Showcasing innovation in coding, AI, and hardware projects.</p>
+        <span class="event-date">July 15, 2025</span>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-4">
+      <div class="event-card h-100 d-flex flex-column align-items-center">
+        <h5 class="card-title">Cultural Night</h5>
+        <p>An evening filled with music, dance, drama, and fun.</p>
+        <span class="event-date">August 25, 2025</span>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-4">
+      <div class="event-card h-100 d-flex flex-column align-items-center">
+        <h5 class="card-title">Leadership Workshop</h5>
+        <p>Develop soft skills and leadership qualities through activities.</p>
+        <span class="event-date">September 10, 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-3">
+  &copy; 2025 College Club. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

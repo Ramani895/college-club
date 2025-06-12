@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Club Website</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body { 
+      scroll-behavior: smooth; 
+      background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+      min-height: 100vh;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #343a40 60%, #6c63ff 100%);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .navbar-brand, .nav-link { 
+      color: #fff !important; 
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover {
+      color: #ffd700 !important;
+      text-shadow: 0 0 5px #fff176;
+    }
+    .hero {
+      height: 90vh; 
+      background: linear-gradient(rgba(44,62,80,0.7),rgba(108,99,255,0.5)), url('https://source.unsplash.com/1600x900/?college,students,creativity') center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-text {
+      color: white; 
+      background: rgba(0,0,0,0.55); 
+      padding: 50px 60px; 
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.25);
+      animation: fadeInDown 1.2s;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ffd700, #6c63ff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-text p {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      color: #e0e7ff;
+    }
+    .btn-creative {
+      background: linear-gradient(90deg, #ffd700, #6c63ff 80%);
+      color: #222;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(108,99,255,0.15);
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-creative:hover, .btn-creative.active {
+      background: linear-gradient(90deg, #6c63ff, #ffd700 80%);
+      color: #fff;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #6c63ff, #ffd700 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .section-title:hover {
+      transform: scale(1.08) rotate(-2deg);
+      text-shadow: 0 2px 12px #ffd70055;
+    }
+    .about-card {
+      background: rgba(255,255,255,0.85);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(108,99,255,0.08);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1.2s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .event-card {
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #e0e7ff 60%, #fffbe7 100%);
+      box-shadow: 0 4px 24px rgba(108,99,255,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .event-card:hover, .event-card.active {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(108,99,255,0.18);
+      border: 2px solid #ffd700;
+    }
+    .event-card .card-title {
+      font-weight: 700;
+      color: #6c63ff;
+    }
+    .event-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: linear-gradient(90deg, #ffd700, #6c63ff 80%);
+      color: #222;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(108,99,255,0.10);
+    }
+    .event-details {
+      display: none;
+      background: #fffbe7;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.98rem;
+      color: #333;
+      box-shadow: 0 2px 8px #ffd70033;
+      animation: fadeInUp 0.6s;
+    }
+    .event-card.active .event-details {
+      display: block;
+    }
+    .team img { 
+      width: 110px; 
+      border-radius: 50%; 
+      border: 4px solid #ffd700;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.10);
+      transition: transform 0.2s;
+      cursor: pointer;
+      object-fit: cover;
+      height: 110px;
+      background: #f8fafc;
+    }
+    .team img:hover {
+      transform: scale(1.08) rotate(-3deg);
+      border-color: #6c63ff;
+    }
+    .team .card {
+      border: none;
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.08);
+      transition: box-shadow 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: visible;
+    }
+    .team .card:hover, .team .card.active {
+      box-shadow: 0 8px 32px rgba(108,99,255,0.18);
+      border: 2px solid #ffd700;
+    }
+    /* --- MODIFIED: Team bio as popover above the card, with arrow, and never clipped --- */
+    .team-bio {
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fffbe7;
+      color: #333;
+      border-radius: 12px;
+      padding: 1rem;
+      min-width: 240px;
+      max-width: 320px;
+      box-shadow: 0 2px 12px #ffd70033;
+      z-index: 1050;
+      animation: fadeInUp 0.6s;
+      top: 0;
+      /* Arrow */
+    }
+    .team-bio::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -16px;
+      border-width: 8px;
+      border-style: solid;
+      border-color: #fffbe7 transparent transparent transparent;
+      z-index: 2;
+    }
+    .team .card.active .team-bio {
+      display: block;
+    }
+    @media (max-width: 767.98px) {
+      .team-bio {
+        min-width: 180px;
+        max-width: 95vw;
+        font-size: 0.98rem;
+      }
+    }
+    .gallery img { 
+      height: 220px; 
+      object-fit: cover; 
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.10);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.04) rotate(1deg);
+      box-shadow: 0 8px 32px rgba(108,99,255,0.18);
+    }
+    .carousel-indicators [data-bs-target] {
+      background-color: #6c63ff;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(108,99,255,0.10);
+      padding: 2rem;
+      animation: fadeInUp 1.2s;
+    }
+    .form-control:focus {
+      border-color: #6c63ff;
+      box-shadow: 0 0 0 0.2rem rgba(108,99,255,0.15);
+    }
+    .form-feedback {
+      display: none;
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #6c63ff;
+      text-align: center;
+      animation: fadeInUp 0.6s;
+    }
+    .form-feedback.active {
+      display: block;
+    }
+    footer { 
+      background: linear-gradient(90deg, #343a40 60%, #6c63ff 100%);
+      color: #fff; 
+      padding: 30px 0; 
+      text-align: center; 
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-social a {
+      color: #ffd700;
+      margin: 0 10px;
+      font-size: 1.3rem;
+      transition: color 0.2s, text-shadow 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px #ffd700;
+    }
+    /* Decorative shapes */
+    .shape {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .shape1 { top: 0; left: 0; width: 180px; }
+    .shape2 { bottom: 0; right: 0; width: 220px; }
+    .shape3 { top: 40%; left: 80%; width: 90px; }
+    /* Modal for gallery */
+    .modal-img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px #6c63ff33;
+    }
+    .modal-backdrop.show {
+      opacity: 0.85;
+      background: linear-gradient(135deg, #6c63ff 0%, #ffd700 100%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative SVG shapes for creativity -->
+  <svg class="shape shape1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="#6c63ff"/></svg>
+  <svg class="shape shape2" viewBox="0 0 220 220"><rect width="220" height="220" rx="60" fill="#ffd700"/></svg>
+  <svg class="shape shape3" viewBox="0 0 90 90"><polygon points="45,0 90,90 0,90" fill="#6c63ff"/></svg>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <i class="bi bi-lightbulb-fill me-2" style="color:#ffd700;font-size:1.7rem;"></i>
+        College Club
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="members.html" class="nav-link">Members</a></li>
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="hero d-flex align-items-center justify-content-center text-center">
+    <div class="hero-text">
+      <h1 id="heroTitle" tabindex="0">Welcome to Our College Club</h1>
+      <p>Empowering Students through <span style="color:#ffd700;font-weight:700;">Collaboration</span> and <span style="color:#6c63ff;font-weight:700;">Innovation</span></p>
+      <a href="about.html" class="btn btn-creative btn-lg mt-3 shadow">Learn More <i class="bi bi-arrow-right-circle ms-2"></i></a>
+      <div class="mt-4 d-flex justify-content-center gap-3">
+        <a href="#events" class="btn btn-outline-light btn-sm rounded-pill px-4">See Events</a>
+        <a href="#contact" class="btn btn-outline-warning btn-sm rounded-pill px-4">Contact Us</a>
+      </div>
+      <div class="mt-4">
+        <button id="randomQuoteBtn" class="btn btn-outline-info btn-sm rounded-pill px-4"><i class="bi bi-chat-quote"></i> Inspire Me!</button>
+        <div id="randomQuote" class="mt-3 text-warning fw-bold" style="min-height:32px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container my-5 position-relative" style="z-index:2;">
+    <h2 class="section-title text-center" id="aboutTitle">About Us</h2>
+    <div class="about-card mx-auto" style="max-width: 700px;">
+      <p class="text-center fs-5">We are a <span style="color:#6c63ff;font-weight:600;">vibrant, student-led club</span> dedicated to organizing engaging events, fostering leadership, and showcasing student talents in <span style="color:#ffd700;font-weight:600;">technology, culture, and sports</span>. Our mission is to create a dynamic community where every student can grow, connect, and shine.</p>
+      <div class="row mt-4">
+        <div class="col-md-4 text-center">
+          <i class="bi bi-people-fill" style="font-size:2.2rem;color:#6c63ff;"></i>
+          <div class="fw-bold mt-2">Community</div>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="bi bi-lightning-fill" style="font-size:2.2rem;color:#ffd700;"></i>
+          <div class="fw-bold mt-2">Innovation</div>
+        </div>
+        <div class="col-md-4 text-center">
+          <i class="bi bi-star-fill" style="font-size:2.2rem;color:#6c63ff;"></i>
+          <div class="fw-bold mt-2">Talent</div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="about.html" class="btn btn-creative">Read More <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="bg-light py-5 position-relative" style="z-index:2;">
+    <div class="container">
+      <h2 class="section-title text-center" id="eventsTitle">Upcoming Events</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card event-card h-100 position-relative" tabindex="0" data-event="0">
+            <span class="event-badge"><i class="bi bi-cpu me-1"></i> Tech</span>
+            <div class="card-body">
+              <h5 class="card-title">Tech Fest 2025</h5>
+              <p class="card-text">An annual showcase of <b>innovation</b> and <b>creativity</b> with workshops, hackathons, and guest lectures. <span class="badge bg-warning text-dark">New!</span></p>
+              <p><i class="bi bi-calendar-event me-1"></i><strong>Date:</strong> July 15, 2025</p>
+              <a href="events.html#techfest" class="btn btn-outline-primary btn-sm rounded-pill">Details</a>
+              <div class="event-details">
+                <strong>Highlights:</strong>
+                <ul>
+                  <li>24hr Hackathon</li>
+                  <li>AI & Robotics Workshops</li>
+                  <li>Keynote by Dr. A. Kumar</li>
+                </ul>
+                <span class="text-primary">Click card to hide details.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card event-card h-100 position-relative" tabindex="0" data-event="1">
+            <span class="event-badge" style="background:linear-gradient(90deg,#6c63ff,#ffd700 80%);color:#fff;"><i class="bi bi-music-note-beamed me-1"></i> Culture</span>
+            <div class="card-body">
+              <h5 class="card-title">Cultural Night</h5>
+              <p class="card-text">Join us for a night filled with <b>dance</b>, <b>music</b>, and <b>drama</b> by our talented students.</p>
+              <p><i class="bi bi-calendar-event me-1"></i><strong>Date:</strong> August 25, 2025</p>
+              <a href="events.html#cultural" class="btn btn-outline-primary btn-sm rounded-pill">Details</a>
+              <div class="event-details">
+                <strong>Performances:</strong>
+                <ul>
+                  <li>Fusion Band</li>
+                  <li>Drama Club Play</li>
+                  <li>Dance Battles</li>
+                </ul>
+                <span class="text-primary">Click card to hide details.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card event-card h-100 position-relative" tabindex="0" data-event="2">
+            <span class="event-badge" style="background:linear-gradient(90deg,#ffd700,#6c63ff 80%);"><i class="bi bi-people me-1"></i> Leadership</span>
+            <div class="card-body">
+              <h5 class="card-title">Leadership Workshop</h5>
+              <p class="card-text">Interactive sessions to improve <b>communication</b>, <b>teamwork</b>, and <b>management skills</b>.</p>
+              <p><i class="bi bi-calendar-event me-1"></i><strong>Date:</strong> September 10, 2025</p>
+              <a href="events.html#leadership" class="btn btn-outline-primary btn-sm rounded-pill">Details</a>
+              <div class="event-details">
+                <strong>Activities:</strong>
+                <ul>
+                  <li>Team Building Games</li>
+                  <li>Panel Discussion</li>
+                  <li>Certificate for Participants</li>
+                </ul>
+                <span class="text-primary">Click card to hide details.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="events.html" class="btn btn-creative">See All Events <i class="bi bi-calendar2-week"></i></a>
+      </div>
+    </div>
+  </section>
+
+<!-- Members -->
+<section id="team" class="container py-5 position-relative" style="z-index:2;">
+  <h2 class="section-title text-center" id="teamTitle">Our Team</h2>
+  <div class="row text-center team g-4">
+    <div class="col-md-3 mb-4">
+      <div class="card p-3 h-100" tabindex="0" data-member="0">
+        <img src="images/aarav.jpg" alt="President" class="mx-auto">
+        <h5 class="mt-3 mb-1">Aarav Mehta</h5>
+        <p class="mb-2 text-secondary">President</p>
+        <div>
+          <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+        </div>
+        <div class="team-bio">
+          <strong>About Aarav:</strong>
+          <p>Final year CS student, passionate about AI and robotics. Loves hackathons and mentoring juniors.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card p-3 h-100" tabindex="0" data-member="1">
+        <img src="images/neha.jpg" alt="Vice President" class="mx-auto">
+        <h5 class="mt-3 mb-1">Neha Singh</h5>
+        <p class="mb-2 text-secondary">Vice President</p>
+        <div>
+          <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+        </div>
+        <div class="team-bio">
+          <strong>About Neha:</strong>
+          <p>Leads the cultural committee. Dancer, poet, and event organizer. Believes in teamwork and creativity.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card p-3 h-100" tabindex="0" data-member="2">
+        <img src="images/ravi.jpg" alt="Secretary" class="mx-auto">
+        <h5 class="mt-3 mb-1">Ravi Patel</h5>
+        <p class="mb-2 text-secondary">Secretary</p>
+        <div>
+          <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+        </div>
+        <div class="team-bio">
+          <strong>About Ravi:</strong>
+          <p>Sports enthusiast and logistics expert. Keeps the club running smoothly and loves cricket.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4">
+      <div class="card p-3 h-100" tabindex="0" data-member="3">
+        <img src="images/meera.jpg" alt="Treasurer" class="mx-auto">
+        <h5 class="mt-3 mb-1">Meera Das</h5>
+        <p class="mb-2 text-secondary">Treasurer</p>
+        <div>
+          <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-danger"><i class="bi bi-envelope"></i></a>
+        </div>
+        <div class="team-bio">
+          <strong>About Meera:</strong>
+          <p>Finance wizard, loves numbers and budgeting. Enjoys painting and volunteering for social causes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="members.html" class="btn btn-creative">Meet the Full Team <i class="bi bi-people"></i></a>
+  </div>
+</section>
+
+
+  <!-- Gallery -->
+<section id="gallery" class="bg-light py-5 position-relative" style="z-index:2;">
+  <div class="container">
+    <h2 class="section-title text-center" id="galleryTitle">Gallery</h2>
+    <!-- Bootstrap Carousel for Gallery -->
+    <div id="clubGalleryCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#clubGalleryCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#clubGalleryCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#clubGalleryCarousel" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner gallery">
+        <div class="carousel-item active">
+          <img src="images/tech.jpg" class="d-block w-100 rounded shadow-sm gallery-img" alt="Tech Fest" data-img="images/tech.jpg">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="bg-dark bg-opacity-50 rounded px-2">Tech Fest Highlights</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/culturals.jpg" class="d-block w-100 rounded shadow-sm gallery-img" alt="Culturals" data-img="images/culturals.jpg">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="bg-dark bg-opacity-50 rounded px-2">Cultural Night Moments</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/leader.jpg" class="d-block w-100 rounded shadow-sm gallery-img" alt="Leadership" data-img="images/leader.jpg">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="bg-dark bg-opacity-50 rounded px-2">Leadership Workshop</h5>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#clubGalleryCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#clubGalleryCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+    <div class="text-center">
+      <a href="gallery.html" class="btn btn-creative">View Full Gallery <i class="bi bi-images"></i></a>
+    </div>
+  </div>
+
+  <!-- Modal for gallery images -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body text-center">
+          <img src="" alt="Gallery Large" class="modal-img" id="modalGalleryImg">
+          <button type="button" class="btn btn-outline-light position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Contact -->
+  <section id="contact" class="container py-5 position-relative" style="z-index:2;">
+    <h2 class="section-title text-center" id="contactTitle">Contact Us</h2>
+    <div class="contact-card mx-auto" style="max-width: 600px;">
+      <form id="contactForm" action="mailto:club@example.com" method="POST" enctype="text/plain" autocomplete="off">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name <i class="bi bi-person"></i></label>
+          <input id="name" name="Name" type="text" class="form-control" required placeholder="Your Name">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email <i class="bi bi-envelope"></i></label>
+          <input id="email" name="Email" type="email" class="form-control" required placeholder="you@email.com">
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message <i class="bi bi-chat-dots"></i></label>
+          <textarea id="message" name="Message" class="form-control" rows="4" required placeholder="How can we help you?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-creative w-100">Send <i class="bi bi-send"></i></button>
+      </form>
+      <div class="form-feedback" id="formFeedback">Thank you for reaching out! We'll get back to you soon.</div>
+      <div class="text-center mt-3">
+        <a href="contact.html" class="btn btn-outline-primary rounded-pill">More Contact Options</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="mb-2">&copy; 2025 <span style="color:#ffd700;font-weight:700;">College Club</span>. All rights reserved.</p>
+    <div class="footer-social mb-2">
+      <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="mailto:club@example.com" title="Email"><i class="bi bi-envelope"></i></a>
+      <a href="https://www.youtube.com/" target="_blank" title="YouTube"><i class="bi bi-youtube"></i></a>
+    </div>
+    <div>
+      <span class="text-light small">Made with <i class="bi bi-heart-fill" style="color:#ffd700;"></i> by creative students</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animate section titles on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const titles = document.querySelectorAll('.section-title');
+      const observer = new window.IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.transform = 'scale(1.08)';
+            entry.target.style.transition = 'transform 0.5s';
+            setTimeout(() => {
+              entry.target.style.transform = '';
+            }, 800);
+          }
+        });
+      }, { threshold: 0.7 });
+      titles.forEach(title => observer.observe(title));
+    });
+
+    // Interactive: Random inspirational quote on Home
+    const quotes = [
+      "Creativity is intelligence having fun. – Albert Einstein",
+      "The best way to predict the future is to create it.",
+      "Innovation distinguishes between a leader and a follower. – Steve Jobs",
+      "Alone we can do so little; together we can do so much. – Helen Keller",
+      "Your only limit is your mind.",
+      "Dream big, work hard, stay focused.",
+      "Collaboration breeds innovation.",
+      "Every accomplishment starts with the decision to try."
+    ];
+    document.getElementById('randomQuoteBtn').addEventListener('click', function() {
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('randomQuote').textContent = quote;
+    });
+
+    // Interactive: Expand/collapse event details
+    document.querySelectorAll('.event-card').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        // Prevent link click from toggling
+        if (e.target.tagName === 'A') return;
+        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('active'));
+        if (!card.classList.contains('active')) {
+          card.classList.add('active');
+        }
+      });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+    // Clicking outside event cards closes all
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.event-card')) {
+        document.querySelectorAll('.event-card').forEach(c => c.classList.remove('active'));
+      }
+    });
+
+    // Interactive: Team member bios on click
+    (function() {
+      const teamCards = document.querySelectorAll('.team .card');
+      const bios = document.querySelectorAll('.team-bio');
+      let lastActive = null;
+
+      function positionBio(card, bio) {
+        // Get card's bounding rect
+        const rect = card.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
+        const scrollX = window.scrollX || window.pageXOffset;
+        // Place bio above the card, centered
+        const bioHeight = bio.offsetHeight;
+        let top = rect.top + scrollY - bioHeight - 18; // 18px gap for arrow
+        if (top < scrollY + 10) top = rect.bottom + scrollY + 18; // If not enough space above, show below
+        bio.style.top = top + "px";
+        bio.style.left = (rect.left + scrollX + rect.width / 2) + "px";
+        bio.style.transform = "translateX(-50%)";
+      }
+
+      teamCards.forEach(function(card, idx) {
+        card.addEventListener('click', function(e) {
+          // Only trigger if not clicking a link
+          if (e.target.tagName === 'A' || e.target.closest('a')) return;
+          teamCards.forEach(c => c.classList.remove('active'));
+          bios.forEach(b => b.style.display = 'none');
+          card.classList.add('active');
+          const bio = card.querySelector('.team-bio');
+          bio.style.display = 'block';
+          positionBio(card, bio);
+          lastActive = {card, bio};
+        });
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+        // Reposition on window resize/scroll if active
+        window.addEventListener('resize', function() {
+          if (card.classList.contains('active')) {
+            const bio = card.querySelector('.team-bio');
+            positionBio(card, bio);
+          }
+        });
+        window.addEventListener('scroll', function() {
+          if (card.classList.contains('active')) {
+            const bio = card.querySelector('.team-bio');
+            positionBio(card, bio);
+          }
+        });
+      });
+      // Clicking outside closes all
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.team .card')) {
+          teamCards.forEach(c => c.classList.remove('active'));
+          bios.forEach(b => b.style.display = 'none');
+        }
+      });
+    })();
+
+    // Interactive: Gallery modal
+    document.querySelectorAll('.gallery-img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        const modalImg = document.getElementById('modalGalleryImg');
+        modalImg.src = img.getAttribute('data-img') || img.src;
+        const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
+        modal.show();
+      });
+    });
+
+    // Interactive: Contact form feedback (simulate AJAX)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('formFeedback').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('formFeedback').classList.remove('active');
+        document.getElementById('contactForm').reset();
+      }, 3500);
+    });
+
+    // Interactive: Animate hero title on hover/focus
+    const heroTitle = document.getElementById('heroTitle');
+    heroTitle.addEventListener('mouseenter', () => {
+      heroTitle.style.letterSpacing = '6px';
+      heroTitle.style.transition = 'letter-spacing 0.4s';
+    });
+    heroTitle.addEventListener('mouseleave', () => {
+      heroTitle.style.letterSpacing = '';
+    });
+    heroTitle.addEventListener('focus', () => {
+      heroTitle.style.letterSpacing = '6px';
+    });
+    heroTitle.addEventListener('blur', () => {
+      heroTitle.style.letterSpacing = '';
+    });
+
+    // Keyboard accessibility for modal close
+    document.getElementById('galleryModal').addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        bootstrap.Modal.getInstance(document.getElementById('galleryModal')).hide();
+      }
+    });
+  </script>
+</body>
+</html>

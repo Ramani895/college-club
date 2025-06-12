@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team - College Club</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #6c63ff;
+      --gold: #ffd700;
+      --navy-gray: #343a40;
+      --pale-blue: #e0e7ff;
+      --light-bg: #f8fafc;
+      --white: #fff;
+      --content-gray: #f8fafc;
+      --text-dark: #222;
+      --text-mid: #333;
+      --shadow-purple: 0 4px 24px 0 rgba(108,99,255,0.12);
+      --shadow-gold: 0 2px 8px 0 #ffd70033;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--pale-blue) 0%, var(--light-bg) 100%);
+      min-height: 100vh;
+      color: var(--text-mid);
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--navy-gray) !important;
+      box-shadow: 0 2px 12px 0 rgba(52,58,64,0.08);
+    }
+    .navbar-brand {
+      color: var(--purple) !important;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .navbar-nav .nav-link {
+      color: var(--white) !important;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link:hover {
+      color: var(--gold) !important;
+    }
+    .navbar-nav .nav-link.active::after {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--gold));
+      border-radius: 2px;
+      margin-top: 2px;
+    }
+
+    /* Section Title */
+    h2 {
+      color: var(--purple);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px rgba(108,99,255,0.10), 0 1px 0 #fff;
+    }
+
+    /* Team Cards */
+    .team-card {
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid var(--pale-blue);
+      border-radius: 1.25rem;
+      box-shadow: var(--shadow-purple), var(--shadow-gold);
+      padding: 2rem 1rem 1.5rem 1rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 6px 32px 0 rgba(108,99,255,0.18), 0 4px 16px 0 #ffd70055;
+      z-index: 2;
+    }
+    .team-card img {
+      border: 3px solid var(--purple);
+      box-shadow: 0 2px 12px 0 rgba(108,99,255,0.10);
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      background: var(--pale-blue);
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .team-card:hover img {
+      border-color: var(--gold);
+    }
+    .team-card h5 {
+      color: var(--purple);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.5px;
+    }
+    .team-card .role-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--gold) 60%, var(--purple) 100%);
+      color: var(--navy-gray);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.25em 0.9em;
+      border-radius: 1em;
+      margin-top: 0.25rem;
+      box-shadow: 0 1px 4px 0 #ffd70033;
+      letter-spacing: 0.5px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-gray);
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      box-shadow: 0 -2px 12px 0 rgba(52,58,64,0.08);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">College Club</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+        <li class="nav-item"><a href="members.html" class="nav-link active">Members</a></li>
+        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Team Members -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Meet Our Team</h2>
+  <div class="row text-center justify-content-center">
+    <div class="col-12 col-sm-6 col-md-3 mb-4">
+      <div class="team-card h-100 d-flex flex-column align-items-center">
+        <img src="images/aarav.jpg" class="rounded-circle" alt="President">
+        <h5>Aarav Mehta</h5>
+        <span class="role-badge">President</span>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mb-4">
+      <div class="team-card h-100 d-flex flex-column align-items-center">
+        <img src="images/neha.jpg" class="rounded-circle" alt="Vice President">
+        <h5>Neha Singh</h5>
+        <span class="role-badge">Vice President</span>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mb-4">
+      <div class="team-card h-100 d-flex flex-column align-items-center">
+        <img src="images/ravi.jpg" class="rounded-circle" alt="Secretary">
+        <h5>Ravi Patel</h5>
+        <span class="role-badge">Secretary</span>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3 mb-4">
+      <div class="team-card h-100 d-flex flex-column align-items-center">
+        <img src="images/meera.jpg" class="rounded-circle" alt="Treasurer">
+        <h5>Meera Das</h5>
+        <span class="role-badge">Treasurer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-3">
+  &copy; 2025 College Club. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
